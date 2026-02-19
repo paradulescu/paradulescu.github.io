@@ -84,7 +84,7 @@
     background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
     padding: 1.25rem; text-align: center;
   }
-  .stat-num { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-num { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .stat-label { color: var(--muted); font-size: .8rem; margin-top: .25rem; }
 
   /* EXPERIENCE */
@@ -131,6 +131,24 @@
     background: rgba(56,189,248,0.1); color: var(--accent); padding: .2rem .6rem; border-radius: 4px;
   }
 
+  /* EDUCATION */
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.75rem 2rem; display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .edu-left h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .25rem; }
+  .edu-left .school { color: var(--accent); font-size: .95rem; margin-bottom: .75rem; }
+  .edu-left .edu-detail { color: var(--muted); font-size: .875rem; margin-bottom: .25rem; }
+  .edu-right { display: flex; flex-direction: column; gap: .6rem; align-items: flex-end; }
+  .edu-badge {
+    background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25);
+    color: var(--accent); padding: .3rem .9rem; border-radius: 6px; font-size: .8rem; white-space: nowrap;
+  }
+  .edu-badge.purple {
+    background: rgba(129,140,248,0.1); border-color: rgba(129,140,248,0.25); color: var(--accent2);
+  }
+
   /* CONTACT */
   .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   .contact-text p { color: var(--muted); margin-bottom: 1.5rem; }
@@ -150,6 +168,7 @@
   @media (max-width: 700px) {
     .about-grid, .contact-inner { grid-template-columns: 1fr; }
     nav ul { display: none; }
+    .edu-right { align-items: flex-start; }
   }
 </style>
 </head>
@@ -162,6 +181,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -171,9 +191,9 @@
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-tag">Simulation · ML · Aerospace</div>
+    <div class="hero-tag">CFD · FEA · Simulation · ML</div>
     <h1>Paul <span>Radulescu</span></h1>
-    <p class="hero-sub">Simulation Engineer bridging physical engineering and machine learning — building surrogate models, CFD pipelines, and AI-driven design tools at the intersection of aerospace and data science.</p>
+    <p class="hero-sub">Simulation and aerospace engineer at PhysicsX — running high-fidelity physics simulations, building automated pipelines, and increasingly working alongside ML teams to develop surrogate models that compress engineering iteration cycles.</p>
     <div class="btn-row">
       <a href="#experience" class="btn btn-primary">View My Work</a>
       <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="btn btn-outline">GitHub →</a>
@@ -186,18 +206,30 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-label">About</div>
-  <h2>Physics meets data science</h2>
+  <h2>Engineer first, growing into data science</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a simulation engineer with a strong aerospace foundation, currently at <strong>PhysicsX</strong> in New York, where I develop ML surrogate models that accelerate high-fidelity physics simulations for automotive and electronics clients.</p>
-      <p>My background spans CFD, FEA, propulsion, and space systems — from F-35 inlet studies at Lockheed Martin Aeronautics to Thrust Vector Actuator optimization at Lockheed Martin Space. I hold a dual MSE/BS in Aerospace Engineering from the University of Michigan (4.0 MSE GPA, Summa Cum Laude).</p>
-      <p>I'm passionate about compressing engineering iteration cycles through intelligent automation — turning 90-hour simulations into 12-hour workflows, and building the tooling to make physics-driven ML accessible at scale.</p>
+      <p>I'm a simulation and aerospace engineer currently at <strong>PhysicsX</strong> in New York, where I own end-to-end simulation workflows and work alongside data science teams to develop ML surrogate models that accelerate high-fidelity physics simulations for automotive and electronics clients.</p>
+      <p>My background is grounded in CFD, FEA, propulsion, and space systems — from transonic inlet studies on the F-35 at Lockheed Martin Aeronautics to Thrust Vector Actuator optimization at Lockheed Martin Space. I hold a dual MSE/BS in Aerospace Engineering from the University of Michigan (4.0 MSE GPA, Summa Cum Laude).</p>
+      <p>I'm increasingly focused on the intersection of traditional simulation and machine learning — building automated pipelines, improving DOE methodology, and collaborating with ML engineers to make physics-driven surrogate models practical at scale.</p>
     </div>
     <div class="stat-grid">
-      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Simulation</div><div class="stat-label">CFD, FEA, and thermal simulations across aerospace, automotive, and electronics domains</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">ML Surrogate Models</div><div class="stat-label">Replacing costly physics solvers with fast, accurate deep learning models for field and scalar predictions</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Pipeline Automation</div><div class="stat-label">End-to-end automated workflows spanning geometry, simulation, preprocessing, and ML training on AWS</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Aerospace Systems</div><div class="stat-label">Hands-on experience across propulsion, structures, space hardware, and flight-critical systems</div></div>
+      <div class="stat-card">
+        <div class="stat-num">CFD & FEA</div>
+        <div class="stat-label">Simulation across aerospace, automotive, and electronics — Star CCM+, Ansys, Pointwise, and more</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Pipeline Automation</div>
+        <div class="stat-label">End-to-end workflows spanning geometry, simulation execution, preprocessing, and ML handoff on AWS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Aerospace Systems</div>
+        <div class="stat-label">Propulsion, structures, space hardware, and flight-critical systems at Lockheed Martin</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">ML Surrogate Models</div>
+        <div class="stat-label">Collaborating with data science teams on field and scalar predictions to replace costly physics solvers</div>
+      </div>
     </div>
   </div>
 </section>
@@ -221,10 +253,10 @@
           <div class="tl-date">Aug 2025 – Present</div>
         </div>
         <ul class="tl-bullets">
-          <li>Owned end-to-end optimization workflow — from simulation execution through surrogate model development to client validation and SOW delivery.</li>
-          <li>Reduced automotive battery thermal simulation runtime from 90+ hours to 12 hours via automated ML pipeline on AWS.</li>
-          <li>Led DOE initiative covering full-stack workflow: data generation, surrogate training, optimization, and on-site client presentations on baffle design.</li>
-          <li>Parameterized thermal models for electronics packaging clients; built full automation pipeline for geometry, simulation, preprocessing, and ML export.</li>
+          <li>Serve as primary technical point of contact for client engagements — leading weekly calls, coordinating simulation and data science deliverables on AWS infrastructure, and delivering Statement of Work milestones.</li>
+          <li>Built automated simulation pipeline that cut automotive battery thermal analysis runtime from 90+ hours to 12 hours; preprocessed and validated simulation data and identified velocity sampling errors in post-processing workflow.</li>
+          <li>Led Design of Experiments (DOE) initiative covering full-stack workflow from simulation data generation through surrogate model training to optimization and validation; presented findings at client site visit on baffle design.</li>
+          <li>Parameterized thermal simulation models for electronics packaging clients and built complete automation pipeline spanning geometry modification, simulation execution, data preprocessing, and ML export; collaborated with ML engineers on deep learning model parameters.</li>
         </ul>
       </div>
     </div>
@@ -240,8 +272,8 @@
           <div class="tl-date">Jun – Aug 2024</div>
         </div>
         <ul class="tl-bullets">
-          <li>Designed and meshed 40 geometries in Pointwise; ran CFD (Falcon) and post-processed in FieldView for transonic inlet sensitivity study — achieving 3.8% pressure recovery improvement.</li>
-          <li>Coordinated cross-functional Engineering Change Notices for $15,000 flight hardware and updated propulsion interface control documents.</li>
+          <li>Designed and meshed 40 geometries in Pointwise; ran CFD simulations in Falcon and post-processed results in FieldView for a transonic inlet sensitivity study — achieving 3.8% pressure recovery improvement from baseline.</li>
+          <li>Coordinated cross-functional inputs to update propulsion interface control documents and completed Engineering Change Notices for $15,000 flight hardware.</li>
         </ul>
       </div>
     </div>
@@ -257,9 +289,9 @@
           <div class="tl-date">May 2022 – May 2024</div>
         </div>
         <ul class="tl-bullets">
-          <li>Optimized Thrust Vector Actuator (TVA) subcomponents using Ansys Mechanical FEA — saving 5% weight and cost.</li>
-          <li>Created FMEA, testing specifications, and released 9 engineering drawings in EPDM.</li>
-          <li>Designed new test procedure and Special Test Equipment rig using Creo Parametric for thrust vector controller.</li>
+          <li>Identified failure and interference risks and optimized Thrust Vector Actuator (TVA) subcomponents using Ansys Mechanical FEA, saving 5% in weight and cost.</li>
+          <li>Created FMEA, testing specifications, and released 9 engineering drawings in EPDM to reflect updated design requirements.</li>
+          <li>Designed a new test procedure and Special Test Equipment rig using Creo Parametric for the thrust vector controller, including a system-level diagram of controller-actuator interfaces.</li>
         </ul>
       </div>
     </div>
@@ -288,14 +320,15 @@
   <h2>Technical toolkit</h2>
   <div class="skills-grid">
     <div class="skill-card">
-      <h3><span class="skill-icon">🧠</span> ML & Data Science</h3>
+      <h3><span class="skill-icon">🌊</span> Simulation & CFD</h3>
       <div class="tag-cloud">
-        <span class="tag">Surrogate Modeling</span>
-        <span class="tag">Deep Learning</span>
-        <span class="tag">DOE</span>
-        <span class="tag">Data Preprocessing</span>
-        <span class="tag">Field Prediction</span>
-        <span class="tag">Scalar Prediction</span>
+        <span class="tag">Star CCM+</span>
+        <span class="tag">Pointwise</span>
+        <span class="tag">Falcon CFD</span>
+        <span class="tag">FieldView</span>
+        <span class="tag">Ansys Mechanical</span>
+        <span class="tag">Nastran FEA</span>
+        <span class="tag">Thermal Analysis</span>
       </div>
     </div>
     <div class="skill-card">
@@ -308,14 +341,14 @@
       </div>
     </div>
     <div class="skill-card">
-      <h3><span class="skill-icon">🌊</span> Simulation & CFD</h3>
+      <h3><span class="skill-icon">🧠</span> ML & Data Science</h3>
       <div class="tag-cloud">
-        <span class="tag">Star CCM+</span>
-        <span class="tag">Pointwise</span>
-        <span class="tag">Falcon CFD</span>
-        <span class="tag">FieldView</span>
-        <span class="tag">Ansys Mechanical</span>
-        <span class="tag">Nastran FEA</span>
+        <span class="tag">Surrogate Modeling</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">DOE</span>
+        <span class="tag">Data Preprocessing</span>
+        <span class="tag">Field Prediction</span>
+        <span class="tag">Scalar Prediction</span>
       </div>
     </div>
     <div class="skill-card">
@@ -327,7 +360,7 @@
       </div>
     </div>
     <div class="skill-card">
-      <h3><span class="skill-icon">☁️</span> Infrastructure</h3>
+      <h3><span class="skill-icon">☁️</span> Infrastructure & Workflow</h3>
       <div class="tag-cloud">
         <span class="tag">AWS</span>
         <span class="tag">Pipeline Automation</span>
@@ -335,14 +368,14 @@
       </div>
     </div>
     <div class="skill-card">
-      <h3><span class="skill-icon">🚀</span> Aerospace</h3>
+      <h3><span class="skill-icon">🚀</span> Aerospace Engineering</h3>
       <div class="tag-cloud">
         <span class="tag">Propulsion</span>
         <span class="tag">Structures</span>
-        <span class="tag">FEA</span>
         <span class="tag">FMEA</span>
-        <span class="tag">Thermal Analysis</span>
         <span class="tag">Flight Hardware</span>
+        <span class="tag">Engineering Drawings</span>
+        <span class="tag">Test Equipment Design</span>
       </div>
     </div>
   </div>
@@ -358,22 +391,43 @@
     <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="proj-card">
       <h3>Airfoil Computational Optimization</h3>
       <p>Python-based aerodynamic shape optimization achieving an 18% drag reduction from baseline geometry using numerical methods.</p>
-      <span class="proj-badge">Python · Optimization · Aerodynamics</span>
+      <span class="proj-badge">Python · Optimization · Aerodynamics · 2024</span>
     </a>
     <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="proj-card">
       <h3>Navier-Stokes & Euler CFD Solver</h3>
       <p>Custom computational fluid dynamics solver written from scratch in Python, implementing both Euler and Navier-Stokes formulations.</p>
-      <span class="proj-badge">Python · CFD · Numerical Methods</span>
+      <span class="proj-badge">Python · CFD · Numerical Methods · 2024</span>
     </a>
     <div class="proj-card">
       <h3>AIAA Aircraft Design Competition</h3>
-      <p>Team Lead for full aircraft conceptual design competition entry — coordinating systems, aerodynamics, and structures across the team.</p>
-      <span class="proj-badge">Team Lead · Aircraft Design · 2024</span>
+      <p>Team Lead for full aircraft conceptual design competition — coordinating aerodynamics, structures, and systems integration across the team.</p>
+      <span class="proj-badge">Team Lead · Aircraft Design · 2023–2024</span>
     </div>
     <div class="proj-card">
       <h3>Crystal Cabin Semifinalist — MSaave</h3>
-      <p>Feasibility Lead for wheelchair accessibility cabin concept that reached the semifinal round of the international Crystal Cabin Award.</p>
-      <span class="proj-badge">Feasibility · Accessibility · 2023</span>
+      <p>Feasibility Lead for a wheelchair-accessible aircraft cabin concept that reached the semifinal round of the international Crystal Cabin Award.</p>
+      <span class="proj-badge">Feasibility Lead · Accessibility · 2022–2023</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2>Academic background</h2>
+  <div class="edu-card">
+    <div class="edu-left">
+      <h3>MSE & BS in Aerospace Engineering</h3>
+      <div class="school">University of Michigan — College of Engineering, Ann Arbor, MI</div>
+      <div class="edu-detail">Dual degree program · Minor in History</div>
+      <div class="edu-detail" style="margin-top:.5rem;">MSE GPA: 4.0 &nbsp;·&nbsp; BSE GPA: 3.87</div>
+    </div>
+    <div class="edu-right">
+      <span class="edu-badge">Summa Cum Laude</span>
+      <span class="edu-badge purple">4.0 MSE GPA</span>
+      <span class="edu-badge">Minor in History</span>
     </div>
   </div>
 </section>
@@ -386,7 +440,7 @@
   <h2>Let's connect</h2>
   <div class="contact-inner">
     <div class="contact-text">
-      <p>I'm always interested in connecting with engineers, researchers, and teams working at the intersection of physics simulation and machine learning. Feel free to reach out.</p>
+      <p>I'm always interested in connecting with engineers, researchers, and teams working in simulation, aerospace, or at the boundary of physics and machine learning. Feel free to reach out.</p>
       <a href="mailto:paradulescu@gmail.com" class="btn btn-primary">Send an Email</a>
     </div>
     <div class="contact-links">
@@ -397,6 +451,10 @@
       <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="contact-link">
         <span class="cl-icon">🐙</span>
         <span class="cl-text">github.com/paradulescu</span>
+      </a>
+      <a href="https://www.linkedin.com/in/paul-radulescu/" target="_blank" class="contact-link">
+        <span class="cl-icon">💼</span>
+        <span class="cl-text">linkedin.com/in/paul-radulescu</span>
       </a>
       <a class="contact-link" style="cursor:default;">
         <span class="cl-icon">📍</span>
