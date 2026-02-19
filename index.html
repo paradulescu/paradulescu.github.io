@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Radulescu – Simulation Engineer</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #1e293b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,14,26,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+  }
+  .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
+  nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding: 6rem 2rem 4rem;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridDrift 20s linear infinite;
+  }
+  @keyframes gridDrift { from { transform: translateY(0); } to { transform: translateY(50px); } }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-content { position: relative; text-align: center; max-width: 800px; }
+  .hero-tag {
+    display: inline-block; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3);
+    color: var(--accent); padding: .35rem 1rem; border-radius: 999px; font-size: .8rem;
+    letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; }
+  .btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: .75rem 1.75rem; border-radius: 8px; font-size: .95rem; font-weight: 600;
+    text-decoration: none; transition: all .2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #0a0e1a; }
+  .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { color: var(--accent); font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; margin-bottom: .5rem; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 3rem; }
+  .divider { width: 100%; height: 1px; background: var(--border); margin: 0 auto; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.25rem; text-align: center;
+  }
+  .stat-num { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { color: var(--muted); font-size: .8rem; margin-top: .25rem; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2)); }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-dot {
+    position: absolute; left: -2.4rem; top: .4rem;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color .2s; }
+  .tl-card:hover { border-color: rgba(56,189,248,0.4); }
+  .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+  .tl-title { font-weight: 700; font-size: 1.1rem; }
+  .tl-company { color: var(--accent); font-size: .9rem; }
+  .tl-date { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+  .tl-bullets { list-style: none; }
+  .tl-bullets li { color: var(--muted); font-size: .9rem; padding: .3rem 0 .3rem 1rem; position: relative; }
+  .tl-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .skill-card h3 { font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+  .skill-icon { font-size: 1.2rem; }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    padding: .3rem .75rem; border-radius: 6px; font-size: .8rem; transition: all .2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PROJECTS */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .proj-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; transition: all .2s; text-decoration: none; display: block;
+  }
+  .proj-card:hover { border-color: rgba(56,189,248,0.5); transform: translateY(-4px); }
+  .proj-card h3 { color: var(--text); font-size: 1rem; margin-bottom: .5rem; }
+  .proj-card p { color: var(--muted); font-size: .875rem; }
+  .proj-badge {
+    display: inline-block; margin-top: .75rem; font-size: .75rem;
+    background: rgba(56,189,248,0.1); color: var(--accent); padding: .2rem .6rem; border-radius: 4px;
+  }
+
+  /* CONTACT */
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .contact-text p { color: var(--muted); margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.25rem; text-decoration: none; color: var(--text); transition: all .2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .cl-icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+  .cl-text { font-size: .9rem; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .about-grid, .contact-inner { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">PR</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="max-width:100%;padding:0;">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Simulation · ML · Aerospace</div>
+    <h1>Paul <span>Radulescu</span></h1>
+    <p class="hero-sub">Simulation Engineer bridging physical engineering and machine learning — building surrogate models, CFD pipelines, and AI-driven design tools at the intersection of aerospace and data science.</p>
+    <div class="btn-row">
+      <a href="#experience" class="btn btn-primary">View My Work</a>
+      <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="btn btn-outline">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Physics meets data science</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a simulation engineer with a strong aerospace foundation, currently at <strong>PhysicsX</strong> in New York, where I develop ML surrogate models that accelerate high-fidelity physics simulations for automotive and electronics clients.</p>
+      <p>My background spans CFD, FEA, propulsion, and space systems — from F-35 inlet studies at Lockheed Martin Aeronautics to Thrust Vector Actuator optimization at Lockheed Martin Space. I hold a dual MSE/BS in Aerospace Engineering from the University of Michigan (4.0 MSE GPA, Summa Cum Laude).</p>
+      <p>I'm passionate about compressing engineering iteration cycles through intelligent automation — turning 90-hour simulations into 12-hour workflows, and building the tooling to make physics-driven ML accessible at scale.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Simulation</div><div class="stat-label">CFD, FEA, and thermal simulations across aerospace, automotive, and electronics domains</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">ML Surrogate Models</div><div class="stat-label">Replacing costly physics solvers with fast, accurate deep learning models for field and scalar predictions</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Pipeline Automation</div><div class="stat-label">End-to-end automated workflows spanning geometry, simulation, preprocessing, and ML training on AWS</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.3rem;">Aerospace Systems</div><div class="stat-label">Hands-on experience across propulsion, structures, space hardware, and flight-critical systems</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Where I've worked</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Simulation Engineer</div>
+            <div class="tl-company">PhysicsX — New York, NY</div>
+          </div>
+          <div class="tl-date">Aug 2025 – Present</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Owned end-to-end optimization workflow — from simulation execution through surrogate model development to client validation and SOW delivery.</li>
+          <li>Reduced automotive battery thermal simulation runtime from 90+ hours to 12 hours via automated ML pipeline on AWS.</li>
+          <li>Led DOE initiative covering full-stack workflow: data generation, surrogate training, optimization, and on-site client presentations on baffle design.</li>
+          <li>Parameterized thermal models for electronics packaging clients; built full automation pipeline for geometry, simulation, preprocessing, and ML export.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Propulsion Engineering Intern</div>
+            <div class="tl-company">Lockheed Martin Aeronautics — Fort Worth, TX</div>
+          </div>
+          <div class="tl-date">Jun – Aug 2024</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Designed and meshed 40 geometries in Pointwise; ran CFD (Falcon) and post-processed in FieldView for transonic inlet sensitivity study — achieving 3.8% pressure recovery improvement.</li>
+          <li>Coordinated cross-functional Engineering Change Notices for $15,000 flight hardware and updated propulsion interface control documents.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Mechanical Engineering Intern</div>
+            <div class="tl-company">Lockheed Martin Space — Sunnyvale, CA</div>
+          </div>
+          <div class="tl-date">May 2022 – May 2024</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Optimized Thrust Vector Actuator (TVA) subcomponents using Ansys Mechanical FEA — saving 5% weight and cost.</li>
+          <li>Created FMEA, testing specifications, and released 9 engineering drawings in EPDM.</li>
+          <li>Designed new test procedure and Special Test Equipment rig using Creo Parametric for thrust vector controller.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Quality Engineering Intern</div>
+            <div class="tl-company">DENSO DMMI — Battle Creek, MI</div>
+          </div>
+          <div class="tl-date">May – Aug 2021</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2>Technical toolkit</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3><span class="skill-icon">🧠</span> ML & Data Science</h3>
+      <div class="tag-cloud">
+        <span class="tag">Surrogate Modeling</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">DOE</span>
+        <span class="tag">Data Preprocessing</span>
+        <span class="tag">Field Prediction</span>
+        <span class="tag">Scalar Prediction</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">💻</span> Programming</h3>
+      <div class="tag-cloud">
+        <span class="tag">Python</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">C</span>
+        <span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🌊</span> Simulation & CFD</h3>
+      <div class="tag-cloud">
+        <span class="tag">Star CCM+</span>
+        <span class="tag">Pointwise</span>
+        <span class="tag">Falcon CFD</span>
+        <span class="tag">FieldView</span>
+        <span class="tag">Ansys Mechanical</span>
+        <span class="tag">Nastran FEA</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🛸</span> CAD & Design</h3>
+      <div class="tag-cloud">
+        <span class="tag">Siemens NX</span>
+        <span class="tag">CATIA</span>
+        <span class="tag">Creo Parametric</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">☁️</span> Infrastructure</h3>
+      <div class="tag-cloud">
+        <span class="tag">AWS</span>
+        <span class="tag">Pipeline Automation</span>
+        <span class="tag">EPDM</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🚀</span> Aerospace</h3>
+      <div class="tag-cloud">
+        <span class="tag">Propulsion</span>
+        <span class="tag">Structures</span>
+        <span class="tag">FEA</span>
+        <span class="tag">FMEA</span>
+        <span class="tag">Thermal Analysis</span>
+        <span class="tag">Flight Hardware</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Selected work</h2>
+  <div class="proj-grid">
+    <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="proj-card">
+      <h3>Airfoil Computational Optimization</h3>
+      <p>Python-based aerodynamic shape optimization achieving an 18% drag reduction from baseline geometry using numerical methods.</p>
+      <span class="proj-badge">Python · Optimization · Aerodynamics</span>
+    </a>
+    <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="proj-card">
+      <h3>Navier-Stokes & Euler CFD Solver</h3>
+      <p>Custom computational fluid dynamics solver written from scratch in Python, implementing both Euler and Navier-Stokes formulations.</p>
+      <span class="proj-badge">Python · CFD · Numerical Methods</span>
+    </a>
+    <div class="proj-card">
+      <h3>AIAA Aircraft Design Competition</h3>
+      <p>Team Lead for full aircraft conceptual design competition entry — coordinating systems, aerodynamics, and structures across the team.</p>
+      <span class="proj-badge">Team Lead · Aircraft Design · 2024</span>
+    </div>
+    <div class="proj-card">
+      <h3>Crystal Cabin Semifinalist — MSaave</h3>
+      <p>Feasibility Lead for wheelchair accessibility cabin concept that reached the semifinal round of the international Crystal Cabin Award.</p>
+      <span class="proj-badge">Feasibility · Accessibility · 2023</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's connect</h2>
+  <div class="contact-inner">
+    <div class="contact-text">
+      <p>I'm always interested in connecting with engineers, researchers, and teams working at the intersection of physics simulation and machine learning. Feel free to reach out.</p>
+      <a href="mailto:paradulescu@gmail.com" class="btn btn-primary">Send an Email</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:paradulescu@gmail.com" class="contact-link">
+        <span class="cl-icon">✉️</span>
+        <span class="cl-text">paradulescu@gmail.com</span>
+      </a>
+      <a href="https://github.com/paradulescu?tab=repositories" target="_blank" class="contact-link">
+        <span class="cl-icon">🐙</span>
+        <span class="cl-text">github.com/paradulescu</span>
+      </a>
+      <a class="contact-link" style="cursor:default;">
+        <span class="cl-icon">📍</span>
+        <span class="cl-text">New York, NY</span>
+      </a>
+      <a href="tel:+12694255747" class="contact-link">
+        <span class="cl-icon">📞</span>
+        <span class="cl-text">+1 (269) 425-5747</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Paul Radulescu · Built for GitHub Pages</p>
+</footer>
+
+</body>
+</html>
