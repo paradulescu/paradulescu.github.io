@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg:        #0A0E14;
-    --panel:     #121821;
-    --panel-2:   #0F141C;
-    --line:      #1F2935;
-    --ink:       #E6EDF3;
-    --muted:     #8B97A7;
-    --faint:     #5C6573;
-    --accent:    #4FD1C5;
-    --accent-dim:#2C7A72;
-    --glow:      rgba(79, 209, 197, 0.14);
+    --bg:        #00274C;
+    --panel:     #0B3868;
+    --panel-2:   #001A38;
+    --line:      #1E4D80;
+    --ink:       #F5F5F0;
+    --muted:     #A9C2DE;
+    --faint:     #6E90B8;
+    --accent:    #FFCB05;
+    --accent-dim:#C9A100;
+    --glow:      rgba(255, 203, 5, 0.16);
     --display: "Space Grotesk", system-ui, sans-serif;
     --body: "Inter", system-ui, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, monospace;
@@ -41,7 +41,7 @@
   }
 
   a { color: inherit; text-decoration: none; }
-  ::selection { background: var(--accent-dim); color: #fff; }
+  ::selection { background: var(--accent-dim); color: var(--bg); }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
@@ -104,8 +104,8 @@
     font-family: var(--mono); font-size: 13.5px; letter-spacing: 0.02em;
     padding: 12px 20px; border-radius: 8px; transition: all .18s ease;
   }
-  .btn-primary { background: var(--accent); color: #06201D; font-weight: 500; }
-  .btn-primary:hover { background: #6ee4d9; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #00274C; font-weight: 500; }
+  .btn-primary:hover { background: #FFD93D; transform: translateY(-1px); }
   .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
   .btn-ghost:hover { border-color: var(--accent-dim); color: var(--accent); }
 
@@ -277,18 +277,20 @@
 
     <div class="job">
       <div class="job-meta">
-        <div class="role">Simulation Engineer</div>
+        <div class="role">Simulation Engineer – Delivery</div>
         <div class="org">PhysicsX — New York, NY</div>
         <div class="date">Aug 2025 – Present</div>
       </div>
       <ul>
-        <li>Cut simulation runtime from <b>90+ hours to 12</b> by re-tuning solver physics for richer training data, yielding <b>50% more training samples</b> and a <b>10–15% lift in model R²</b>.</li>
-        <li>Drove surrogate model performance gains in partnership with data science, translating simulation physics into ML feature engineering (e.g., binary flags → continuous functions) to improve accuracy.</li>
+        <li>Developed a 3D mesh semantic segmentation pipeline for novel geometries, training a custom MLP to <b>96% accuracy</b> across <b>500+ geometries in under 30 seconds</b> — enabling deterministic CAE solver validation of generative designs and a <b>12.5% reduction in stress KPIs</b> through directed optimization.</li>
+        <li>Built an automated active-learning pipeline that triggered simulation runs during high-uncertainty regions, cutting <b>WAPE by 25%</b> in key areas of the design space.</li>
+        <li>Cut simulation runtime from <b>90+ hours to 12</b> by re-tuning solver physics for richer training data, yielding <b>50% more training samples</b> and a <b>10–15% lift in model R²</b>; translated first-principles physics into ML feature engineering.</li>
         <li>Led cross-functional delivery across simulation, data science, and software engineering as <b>sole simulation engineer</b>, converting ambiguous client requirements into concrete ML and software workflows.</li>
         <li>Built and shipped a production Ansys Mechanical and Python simulation worker on <b>Kubernetes</b>, with a custom-input pipeline <b>adopted across all delivery projects</b> on the platform.</li>
+        <li>Designed preprocessing pipelines and simulation outputs for direct use by engineers across disciplines, cutting hand-off work by <b>15%</b> and improving cross-team quality and speed.</li>
+        <li>Served as key client-facing engineer: onboarded <b>8+ client engineers</b>, translated client needs into deliverables across <b>3 projects</b>, and led customer outreach engagements.</li>
         <li>Authored autonomous handoff pipelines that let a data scientist independently recover from a full data-loss event, preserving <b>1 of 8 project weeks</b>.</li>
-        <li>Led requirements and direction-setting workshops at client sites, surfacing a critical environment discrepancy in week 2 and driving the resolution plan.</li>
-        <li>Worked across a range of physics and systems — electronic packaging, turbine blades, and battery thermal runaway.</li>
+        <li>Generated and curated large-scale physics datasets — structural, modal/vibration, and thermal — across electronics packaging, semiconductors, turbine blades, and battery thermal runaway.</li>
       </ul>
     </div>
 
@@ -308,7 +310,7 @@
       <div class="job-meta">
         <div class="role">Mechanical Engineering Intern</div>
         <div class="org">Lockheed Martin Space — Sunnyvale, CA</div>
-        <div class="date">May 2022 – May 2024</div>
+        <div class="date">May 2022 – 2024</div>
       </div>
       <ul>
         <li>Identified failure and interference risks and optimized Thrust Vector Actuator (TVA) subcomponents using Ansys Mechanical FEA, saving <b>5% in weight and cost</b>.</li>
@@ -347,7 +349,7 @@
     <div class="skill-group">
       <div class="gname">// Programming</div>
       <div class="chips">
-        <span class="chip">Python</span><span class="chip">MATLAB</span><span class="chip">C</span><span class="chip">Bash</span><span class="chip">Git</span>
+        <span class="chip">Python</span><span class="chip">JAX</span><span class="chip">PyTorch</span><span class="chip">MATLAB</span><span class="chip">Bash</span><span class="chip">Git</span>
       </div>
     </div>
 
@@ -370,7 +372,7 @@
     <div class="skill-group">
       <div class="gname">// Infrastructure &amp; Workflow</div>
       <div class="chips">
-        <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Pipeline Automation</span><span class="chip">EPDM</span>
+        <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">K9s</span><span class="chip">Pipeline Automation</span><span class="chip">EPDM</span>
       </div>
     </div>
 
