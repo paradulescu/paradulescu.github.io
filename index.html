@@ -123,7 +123,17 @@
 
   /* about */
   .about-text p { color: var(--muted); max-width: 720px; margin: 0 0 18px; }
-  .about-text strong { color: var(--ink); font-weight: 600; }
+  .about-text strong { color: var(--accent); font-weight: 600; }
+  .sim-box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 28px 30px; margin-top: 38px; max-width: 760px;
+  }
+  .sim-box .tag {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+  .sim-box h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0 0 12px; color: var(--ink); }
+  .sim-box p { color: var(--muted); margin: 0; font-size: 0.95rem; line-height: 1.65; }
   .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 44px; }
   @media (max-width: 860px) { .cards { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 460px) { .cards { grid-template-columns: 1fr; } }
@@ -228,43 +238,53 @@
 <section id="about">
   <div class="wrap">
     <div class="sec-label">About</div>
-    <h2>Engineer first, growing into data science</h2>
+    <h2>Aerospace engineering foundations, applied through optimization and ML</h2>
     <div class="about-text">
       <p>
-        I'm a simulation and aerospace engineer currently at <strong>PhysicsX</strong> in New York,
-        where I own end-to-end simulation workflows as the sole simulation engineer on my projects and
-        work alongside data science and software teams to develop ML surrogate models that accelerate
-        high-fidelity physics simulations.
+        My background is in aerospace engineering and applied physics, with a focus on computational
+        optimization. I hold a dual MSE and BSE in Aerospace Engineering from the <strong>University
+        of Michigan</strong> (4.0 MSE GPA, 3.87 BSE GPA, Summa Cum Laude), built on numerical methods,
+        CFD (Navier–Stokes and Euler), finite element analysis, and structural, modal, and thermal
+        analysis. That foundation carried into my role at large aerospace company like Lockheed Martin.
       </p>
       <p>
-        My background is grounded in CFD, FEA, propulsion, and space systems — from transonic inlet
-        studies at Lockheed Martin Aeronautics to Thrust Vector Actuator optimization at Lockheed Martin
-        Space. I hold a dual MSE/BS in Aerospace Engineering from the University of Michigan
-        (4.0 MSE GPA, Summa Cum Laude).
+        Today I apply that background at the intersection of simulation and machine learning at
+        <strong>PhysicsX</strong>. I build production ML pipelines for CAE and physics systems,
+        and an automated active learning pipeline. I translate first principles physics into ML feature
+        engineering to improve surrogate model accuracy, and the tools I have shipped are now used
+        across every delivery project on the platform.
       </p>
+    </div>
+
+    <div class="sim-box">
+      <div class="tag">Simulation Engineering</div>
+      <h3>What it looks like day to day</h3>
       <p>
-        I'm increasingly focused on the intersection of traditional simulation and machine learning —
-        translating simulation physics into ML feature engineering, building automated pipelines, and
-        acting as the technical bridge across simulation, data science, and software engineering.
+        I own end to end simulation workflows: generating and curating large-scale physics datasets
+        (structural, modal/vibration, thermal) across electronics packaging, semiconductors, turbine
+        blades, and battery thermal runaway, then building preprocessing pipelines and simulation
+        outputs that other engineers can use directly, cutting hand-off work. This is the layer
+        underneath every ML model we ship, and it is where I spend my time translating
+        first principles physics into something a model, or another engineer, can act on.
       </p>
     </div>
 
     <div class="cards">
       <div class="card">
+        <h3>Optimization</h3>
+        <p>Computational optimization applied to aerodynamic shapes, structural components, and generative design geometries.</p>
+      </div>
+      <div class="card">
         <h3>CFD &amp; FEA</h3>
-        <p>Simulation across aerospace, automotive, and electronics — Star CCM+, Ansys, Pointwise, and more.</p>
-      </div>
-      <div class="card">
-        <h3>Pipeline Automation</h3>
-        <p>Production workflows spanning geometry, simulation execution, preprocessing, and ML handoff on AWS.</p>
-      </div>
-      <div class="card">
-        <h3>Cross-Functional Lead</h3>
-        <p>Translating ambiguous client requirements into concrete ML and software workflows across teams.</p>
+        <p>Simulation across aerospace, automotive, and electronics, using Star CCM+, Ansys, Pointwise, and more.</p>
       </div>
       <div class="card">
         <h3>ML Surrogate Models</h3>
-        <p>Partnering with data science on feature engineering and field/scalar predictions to replace costly solvers.</p>
+        <p>Partnering with data science on feature engineering and field or scalar predictions to replace costly solvers.</p>
+      </div>
+      <div class="card">
+        <h3>Production Workers and Tooling</h3>
+        <p>Shipping simulation CAE workers adopted across delivery projects, from client facing requirements to final deliverables.</p>
       </div>
     </div>
   </div>
@@ -431,7 +451,6 @@
       <div class="badges">
         <span class="badge">Summa Cum Laude</span>
         <span class="badge">4.0 MSE GPA</span>
-        <span class="badge">Astronaut Scholarship Foundation</span>
         <span class="badge">Minor in History</span>
       </div>
       <div class="detail" style="margin-top:16px">AIAA Professional Development: Hypersonic Aerothermodynamics · Design of Electric Vehicles</div>
